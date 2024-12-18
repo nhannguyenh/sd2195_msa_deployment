@@ -1,8 +1,6 @@
 pipeline {
-    agent {
-        k8s {
-            lable 'k8s'
-        }
+    agent { 
+        label 'k8s'
     }
 
     environment {

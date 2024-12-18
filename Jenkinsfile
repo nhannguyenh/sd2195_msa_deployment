@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS-REGION = "ap-southeast-1"
+        AWS_REGION = "ap-southeast-1"
         EKS_CLUSTER = "sd2195_eks_cluster"
         NAME_SPACE = "sd2195_practical_devops"
     }

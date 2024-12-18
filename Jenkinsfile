@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage ("Deploy to EKS cluster") {
             steps {
-                withAWS(credentials: 'AWS-CREDS', region: ${AWS_REGION}) {
+                withAWS(credentials: 'AWS-CREDS', region: "${AWS_REGION}") {
                     sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
                     sh ("kubectl create namespace ${NAME_SPACE}")
                 }

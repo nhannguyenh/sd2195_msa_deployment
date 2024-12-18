@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        k8s {
+            lable 'k8s'
+        }
+    }
 
     environment {
         AWS_REGION = "ap-southeast-1"

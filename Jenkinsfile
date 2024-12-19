@@ -15,6 +15,9 @@ pipeline {
                 withAWS(credentials: 'AWS_CREDS', region: "${AWS_REGION}") {
                     sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
                     sh ("kubectl create namespace ${NAME_SPACE}")
+                    sh ("kubectl config set-context --current --namespace ${NAME_SPACE}")
+                    sh ("kubectl config view --minify | grep namespace")
+                    sh ("kubectl apply -f mongodb.yaml")
                 }
             }
         }

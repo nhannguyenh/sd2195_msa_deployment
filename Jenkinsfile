@@ -20,7 +20,7 @@ pipeline {
                     //     sh ("if [ -z '${isNsExisted}' ]; then kubectl create namespace ${NAME_SPACE} fi")
 
                     // }
-                    sh ("kubectl create namespace ${NAME_SPACE}")
+                    // sh ("kubectl create namespace ${NAME_SPACE}")
                     sh ("kubectl config set-context --current --namespace ${NAME_SPACE}")
                     sh ("kubectl config view --minify | grep namespace")
                     sh ("kubectl apply -f mongodb.yaml")

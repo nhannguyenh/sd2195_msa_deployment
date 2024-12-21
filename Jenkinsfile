@@ -15,7 +15,7 @@ pipeline {
                 withAWS(credentials: 'AWS_CREDS', region: "${AWS_REGION}") {
                     sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
                     sh ("""
-                        isNsExisted = $(kubectl get ns | grep ${NAME_SPACE})
+                        isNsExisted = \$(kubectl get ns | grep ${NAME_SPACE})
                         if [ -z "${isNsExisted}" ]; then
                             kubectl create namespace ${NAME_SPACE}
                         fi

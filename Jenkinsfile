@@ -13,19 +13,14 @@ pipeline {
         stage ("Deploy to EKS cluster") {
             steps {
                 withAWS(credentials: 'AWS_CREDS', region: "${AWS_REGION}") {
-                    script {
-                        sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
+                    sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
+                    // script {
 
-                        def isNsExisted = sh ("\$(kubectl get ns | grep ${NAME_SPACE})")
-                        sh ("if [ -z '${isNsExisted}' ]; then kubectl create namespace ${NAME_SPACE} fi")
+                    //     def isNsExisted = sh ("\$(kubectl get ns | grep ${NAME_SPACE})")
+                    //     sh ("if [ -z '${isNsExisted}' ]; then kubectl create namespace ${NAME_SPACE} fi")
 
-                    }
-                    // sh ("""
-                    //     isNsExisted = \$(kubectl get ns | grep ${NAME_SPACE})
-                    //     if [ -z "${isNsExisted}" ]; then
-                    //         kubectl create namespace ${NAME_SPACE}
-                    //     fi
-                    // """)
+                    // }
+                    sh ("kubectl create namespace ${NAME_SPACE}")
                     sh ("kubectl config set-context --current --namespace ${NAME_SPACE}")
                     sh ("kubectl config view --minify | grep namespace")
                     sh ("kubectl apply -f mongodb.yaml")

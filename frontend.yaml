@@ -9,7 +9,7 @@ spec:
     - port: 3000
       protocol: TCP
       targetPort: 3000
-  type: ClusterIP
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: sd2195_ecr_frontend:latest
+          image: dkr.ecr.ap-southeast-1.amazonaws.com/sd2195_ecr_frontend:v1.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

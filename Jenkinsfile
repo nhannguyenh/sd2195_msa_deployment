@@ -25,6 +25,7 @@ pipeline {
                     sh ("kubectl config view --minify | grep namespace")
                     sh ("kubectl apply -f mongodb.yaml")
                     sh ("kubectl apply -f backend.yaml")
+                    sh ("kubectl apply -f frontend.yaml")
                 }
             }
         }

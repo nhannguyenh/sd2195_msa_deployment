@@ -16,7 +16,7 @@ pipeline {
                     script {
                         sh ("aws eks update-kubeconfig --name ${EKS_CLUSTER} --region ${AWS_REGION}")
 
-                        def isNsExisted = sh ("$(kubectl get ns | grep ${NAME_SPACE})")
+                        def isNsExisted = sh ("\$(kubectl get ns | grep ${NAME_SPACE})")
                         sh ("if [ -z "${isNsExisted}" ]; then kubectl create namespace ${NAME_SPACE} fi")
 
                     }

@@ -24,6 +24,7 @@ pipeline {
                     sh ("kubectl config set-context --current --namespace ${NAME_SPACE}")
                     sh ("kubectl config view --minify | grep namespace")
                     sh ("kubectl apply -f mongodb.yaml")
+                    sh ("kubectl apply -f backend.yaml")
                 }
             }
         }
